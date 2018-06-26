@@ -4,7 +4,7 @@ const client = new Discord.Client();
 
 var prefix = "!";
 
-client.login(process.env.BOT_TOKEN);
+client.login("NDYxMDUxOTcyMTMzMzIyNzUy.DhNsAA.pZHWmqp1LwHW_dPivY2XOMz-9Ss");
 
 client.on('ready', () => {
     console.log("[AyrozDZN - BOT] Ready");
