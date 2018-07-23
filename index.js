@@ -46,14 +46,17 @@ client.on('guildMemberRemove', member => {
 client.on('message', async message => {
     
     if (message.content === prefix + "help") {
-        message.channel.bulkDelete(1)
+        message.delete();
         var help_embed = new Discord.RichEmbed()
         .setColor("#3E4E6B")
         .setTitle("Commande - HELP:")
-        .setDescription("!Voici toute les commandes du bot")
+        .setDescription("Voici toute les commandes du bot")
         .addField("!help", "Afficher les commandes")
         .addField("!stats", "Affiche t'est stats en message privé")
         .addField("!info", "Affiche les infos du serveur et du bot")
+        .addField("!play <lien youtube>", "Lancer une musique youtube")
+        .addField("!skip", "Passer à la musique suivante")
+        .addField("!stop", "Stopper la musique")
         .addField("!clear <nombre>", "Supprime un nombre définie de message")
         .addField("!mute <membre>", "mute un membre dans le channel respectif")
 
@@ -62,29 +65,9 @@ client.on('message', async message => {
         .setFooter("AyrozDZN - BOT, menu help")
         message.channel.send(help_embed);
     }
-
-    if (message.content === prefix + "reglement") {
-        message.channel.bulkDelete(1)
-        var regle_embed = new Discord.RichEmbed()
-        .setColor("#3E4E6B")
-        .setTitle("Reglement")
-        .setDescription("!Voici le reglement du serveur")
-        .addField("regle 1", "commentaire 1")
-        .addField("regle 2", "commentaire 2")
-        .addField("regle 3", "commentaire 3")
-        .addField("regle 4", "commentaire 4")
-        .addField("regle 5", "commentaire 5")
-        .addField("regle 6", "commentaire 6")
-        .addField("regle 7", "commentaire 7")
-        .addField("regle 8", "commentaire 8")
-        .addField("regle 9", "commentaire 9")
-        .addField("regle 10", "commentaire 10")
-        .setFooter("AyrozDZN - BOT, reglement")
-        message.channel.send(regle_embed);
-    }
-
+  
     if (message.content === prefix + "info") {
-        message.channel.bulkDelete(1)
+        message.delete();
         var info_embed = new Discord.RichEmbed()
         .setColor("#3E4E6B")
         .setTitle("Commande - INFO:")
@@ -102,7 +85,7 @@ client.on('message', async message => {
     }
 
     if (message.content.startsWith(prefix + "kick")) {
-        message.channel.bulkDelete(1)
+        message.delete();
         if (!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.channel.send("```diff\n- Vous n'avez pas la permissions de kick des membres de se discord\n```");
     
         if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) {
@@ -125,7 +108,7 @@ client.on('message', async message => {
     }
 
     if (message.content.startsWith(prefix + "ban")) {
-        message.channel.bulkDelete(1)
+        message.delete();
         if (!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.channel.send("```diff\n- Vous n'avez pas la permissions de ban des membres de se discord\n```");
     
         if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) {
@@ -148,15 +131,22 @@ client.on('message', async message => {
     }
 
     if (message.content.startsWith(prefix + "clear")) {
-        message.channel.bulkDelete(1)
-        if (!message.guild.member(message.author).hasPermission("MANAGE_MESSAGES")) return message.channel.send("```diff\n- Vous n'avez pas la permission de clear des messages dans se channel\n```");
+        message.delete();
+        setTimeOut(Temps, 5000);
+        function Temps() {
+            if (!message.guild.member(message.author).hasPermission("MANAGE_MESSAGES")) return message.channel.send("```diff\n- Vous n'avez pas la permission de clear des messages dans se channel\n```");
 
-        let args = message.content.split(" ").slice(1);
+            let args = message.content.split(" ").slice(1);
 
-        if (!args[0]) return message.channel.send("```diff\n- Tu dois préciser un nombre de message a supprimé\n```")
-        message.channel.bulkDelete(args[0]).then(() => {
+            if (!args[0]) return message.channel.send("```diff\n- Tu dois préciser un nombre de message a supprimé\n```")
+            message.channel.bulkDelete(args[0]).then(() => {
             message.channel.send(`**__${args[0]} message on été supprimés !__**`);
         })
+        }
+        setTimeOut(Temps2, 5000);
+        function Temps2() {
+            message.delete();
+        }
     }
     
     if(message.content.startsWith(prefix + "mute")) {
