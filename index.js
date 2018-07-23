@@ -32,7 +32,7 @@ function play(connection, message) {
 
 client.on('ready', () => {
     console.log("[AyrozDZN - BOT] Ready");
-    client.user.setActivity(`]|[AyrozDZN : !help]|[`);
+    client.user.setActivity(`]|[AyroBot : !help]|[`);
 });
 
 client.on('guildMemberAdd', member => {
@@ -69,7 +69,7 @@ client.on('message', async message => {
         .addField("!mute <membre>", "mute un membre dans le channel respectif")
         .addField("!kick <membre>", "Kick un membre")
         .addField("!ban <membre>", "ban un membre")
-        .setThumbnail(message.client.avatarURL)
+        .setThumbnail(client.user.avatarURL)
         .setFooter("AyrozDZN - BOT, menu help")
         message.channel.send(help_embed);
     }
@@ -85,9 +85,10 @@ client.on('message', async message => {
         .addField("Developpeur : ", "AyrozDZN")
         .addBlankField()
         .addField("Serveur :", "Information du serveur")
-        .addField("Nombre de membres : ", `${message.guild.members.size}`)
+        .addField("Nom : ", `${message.guild.name}`)
+        .addField("Nombre de membres : ", `${message.guild.memberCount}`)
         .addField("Nombre de salons et de catégories : ", `${message.guild.channels.size}`)
-        .setThumbnail(message.guild.avatarURL)
+        .setThumbnail(message.guild.iconURL)
         .setFooter("AyrozDZN - BOT, menu info")
         message.channel.send(info_embed);
     }
