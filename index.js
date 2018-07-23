@@ -63,7 +63,6 @@ client.on('message', async message => {
         .addField("!stop", "Stopper la musique")
         .addField("!clear <nombre>", "Supprime un nombre définie de message")
         .addField("!mute <membre>", "mute un membre dans le channel respectif")
-
         .addField("!kick <membre>", "Kick un membre")
         .addField("!ban <membre>", "ban un membre")
         .setFooter("AyrozDZN - BOT, menu help")
