@@ -69,7 +69,7 @@ client.on('message', async message => {
         .addField("!mute <membre>", "mute un membre dans le channel respectif")
         .addField("!kick <membre>", "Kick un membre")
         .addField("!ban <membre>", "ban un membre")
-        .setThumbnail(client.avatarURL)
+        .setThumbnail(message.client.avatarURL)
         .setFooter("AyrozDZN - BOT, menu help")
         message.channel.send(help_embed);
     }
@@ -87,7 +87,7 @@ client.on('message', async message => {
         .addField("Serveur :", "Information du serveur")
         .addField("Nombre de membres : ", `${message.guild.members.size}`)
         .addField("Nombre de salons et de catégories : ", `${message.guild.channels.size}`)
-        .setThumbnail(guild.avatarURL)
+        .setThumbnail(message.guild.avatarURL)
         .setFooter("AyrozDZN - BOT, menu info")
         message.channel.send(info_embed);
     }
