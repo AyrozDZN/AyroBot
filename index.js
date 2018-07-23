@@ -46,7 +46,7 @@ client.on('guildMemberRemove', member => {
 client.on('message', async message => {
   
     if(message.content.startsWith(prefix + "avatar")) {
-        message.channel.send(message.author.avatar)
+        message.channel.send(message.author.displayAvatarURL)
     }
     
     if (message.content === prefix + "help") {
