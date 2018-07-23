@@ -1,13 +1,12 @@
 {
-  "name": "AyroBot",
+  "name": "ayrobot",
   "version": "1.0.0",
-  "description": "Bot discord officiel de AyroDZN",
+  "description": "bot officiel de ayrozdzn",
   "main": "index.js",
   "dependencies": {
     "discord.js": "^11.3.2",
     "opusscript": "^0.0.6",
-    "ytdl-core": "^0.21.1",
-    "FFMPEG": "^4.0.1"
+    "ytdl-core": "^0.21.1"
   },
   "devDependencies": {},
   "scripts": {
@@ -15,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AyrozDZN/AyrozDZN-BOT"
+    "url": "git+https://github.com/AyrozDZN/AyroBot.git"
   },
   "keywords": [
     "blabla"
@@ -23,7 +22,7 @@
   "author": "AyrozDZN",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AyrozDZN/AyrozDZN-BOT/issues"
+    "url": "https://github.com/AyrozDZN/AyroBot/issues"
   },
-  "homepage": "https://github.com/AyrozDZN/AyrozDZN-BOT#readme"
+  "homepage": "https://github.com/AyrozDZN/AyroBot#readme"
 }
