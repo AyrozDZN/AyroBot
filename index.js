@@ -127,18 +127,13 @@ client.on('message', async message => {
     }
 
     if (message.content.startsWith(prefix + "clear")) {
-        setTimeOut(Temps, 5000);
-        function Temps() {
-            if (!message.guild.member(message.author).hasPermission("MANAGE_MESSAGES")) return message.channel.send("```diff\n- Vous n'avez pas la permission de clear des messages dans se channel\n```");
+        if (!message.guild.member(message.author).hasPermission("MANAGE_MESSAGES")) return message.channel.send("```diff\n- Vous n'avez pas la permission de clear des messages dans se channel\n```");
 
-            let args = message.content.split(" ").slice(1);
+        let args = message.content.split(" ").slice(1);
 
-            if (!args[0]) return message.channel.send("```diff\n- Tu dois préciser un nombre de message a supprimé\n```")
-            message.delete();
-            message.channel.bulkDelete(args[0]).then(() => {
-            message.channel.send(`**__${args[0]} message on été supprimés !__**`);
-        })
-        }
+        if (!args[0]) return message.channel.send("```diff\n- Tu dois préciser un nombre de message a supprimé\n```")
+        message.channel.bulkDelete(args[0]).then(() => {
+        message.channel.send(`**__${args[0]} message on été supprimés !__**`);
         setTimeOut(Temps2, 5000);
         function Temps2() {
             message.delete();
