@@ -47,7 +47,7 @@ client.on('message', async message => {
   
     if(message.content.startsWith(prefix + "avatar")) {
         var avatar_embed = new Discord.RichEmbed()
-        .setColor("#6699FF")
+        .setColor("#3E4E6B")
         .setTitle(`Avatar de ${message.author.username}`)
         .setImage(message.author.avatarURL)
         message.channel.send(avatar_embed);
@@ -193,7 +193,7 @@ client.on('message', async message => {
         var msgauthor = message.author.id;
 
         var stats_embed = new Discord.RichEmbed()
-        .setColor("#6699FF")
+        .setColor("#3E4E6B")
         .setTitle(`Statistiques du joueurs : ${message.author.username}`)
         .addField(`ID du joueurs :id:`, msgauthor, true)
         .addField(`Date d'inscription du joueur :`, userCreateDate[1] + ' ' + userCreateDate[2] + ' ' + userCreateDate[3])
