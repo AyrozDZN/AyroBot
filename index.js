@@ -4,7 +4,31 @@ const client = new Discord.Client();
 
 var prefix = "!";
 
+const ytdl = require('ytdl-core');
+
+const queue = new Map();
+
+var servers = {};
+
+
 client.login("NDYxMDUxOTcyMTMzMzIyNzUy.DjdArQ.DVYR3SBpIRcY5FnlyUtmegejQko");
+
+function play(connection, message) {
+  
+    var server = servers[message.guild.id];
+  
+    server.dispatcher = connection.playStream(ytdl(server.queue[0], {filter: "audioonly"}));
+  
+    server.queue.shift();
+  
+    server.dispatcher.on("end", function() { 
+    
+        if (server.queue[0]) play(connection, message);
+  
+        else connection.disconnect();
+  
+    });
+}
 
 client.on('ready', () => {
     console.log("[AyrozDZN - BOT] Ready");
@@ -19,7 +43,8 @@ client.on('guildMemberRemove', member => {
     member.guild.channels.find("name", "accueil").send(`**${member.user.username}** à quitté **AƳƦƠƵ**. Au revoir **${member.user.username}**...`)
 })
     
-client.on('message', message => {
+client.on('message', async message => {
+    
     if (message.content === prefix + "help") {
         message.channel.bulkDelete(1)
         var help_embed = new Discord.RichEmbed()
@@ -175,24 +200,89 @@ client.on('message', message => {
 
     var args = message.content.substring(prefix.length).split(" ");
 
-    switch (args[0].toLowerCase()) {
+    switch (args[0].toLowerCase()) { 
+
         case "stats":
 
         var userCreateDate = message.author.createdAt.toString().split(" ");
-        var msgId = message.author.id;
+        var msgauthor = message.author.id;
 
         var stats_embed = new Discord.RichEmbed()
-        .setColor("#3E4E6B")
-        .setTitle("Commande - STATS:")
-        .setDescription("Voici la description de ton compte discord")
-        .addField('Pseudo : ', `${message.author.username}`)
-        .addField("Id : ", msgId, true)
-        .addField("Date de création : ", userCreateDate[1] + " " + userCreateDate[2] + " " + userCreateDate[3])
+        .setColor("#6699FF")
+        .setTitle(`Statistiques du joueurs : ${message.author.username}`)
+        .addField(`ID du joueurs :id:`, msgauthor, true)
+        .addField(`Date d'inscription du joueur :`, userCreateDate[1] + ' ' + userCreateDate[2] + ' ' + userCreateDate[3])
         .setThumbnail(message.author.avatarURL)
-        .setFooter("AyrozDZN - BOT, menu stats")
-        message.author.send({embed: stats_embed});
-        message.reply("Vous avez reçu vos statistiques en message privé !")
-        
+        message.reply("Tu peux regarder tes messages privés !")
+        message.author.send(stats_embed);
+
         break;
+        
+    case "play":
+
+        if (!args[1]) {
+
+        message.channel.send("Tu dois m’indiquer un lien YouTube"); 
+
+        return;
+
+    }
+
+        if(!message.member.voiceChannel) {
+
+        message.channel.send(":x: Tu dois être dans un salon vocal"); 
+
+        return;
+
+    }
+
+
+        if(!servers[message.guild.id]) servers[message.guild.id] = {
+
+        queue: []
+
+    };
+
+
+    var server = servers[message.guild.id];
+
+
+    server.queue.push(args[1]);
+
+    if(!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
+
+    play(connection, message) 
+
+    });
+
+    break; 
+
+    case "skip":
+
+        if(!message.member.voiceChannel) {
+
+        message.channel.send(":x: Tu dois être dans un salon vocal"); 
+
+        return;
+
+    
+    }   
+
+        var server = servers[message.guild.id];
+
+        if(server.dispatcher) server.dispatcher.end();
+
+        break;
+
+    case "stop":
+
+        if(!message.member.voiceChannel) 
+    
+        return message.channel.send(":x: Tu dois être dans un salon vocal");
+
+        message.member.voiceChannel.leave();
+
+        break;
+  
     }
 });
