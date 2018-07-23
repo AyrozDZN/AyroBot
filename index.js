@@ -46,7 +46,6 @@ client.on('guildMemberRemove', member => {
 client.on('message', async message => {
     
     if (message.content === prefix + "help") {
-        message.delete();
         var help_embed = new Discord.RichEmbed()
         .setColor("#3E4E6B")
         .setTitle("Commande - HELP:")
@@ -67,7 +66,6 @@ client.on('message', async message => {
     }
   
     if (message.content === prefix + "info") {
-        message.delete();
         var info_embed = new Discord.RichEmbed()
         .setColor("#3E4E6B")
         .setTitle("Commande - INFO:")
@@ -85,7 +83,6 @@ client.on('message', async message => {
     }
 
     if (message.content.startsWith(prefix + "kick")) {
-        message.delete();
         if (!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.channel.send("```diff\n- Vous n'avez pas la permissions de kick des membres de se discord\n```");
     
         if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) {
@@ -108,7 +105,6 @@ client.on('message', async message => {
     }
 
     if (message.content.startsWith(prefix + "ban")) {
-        message.delete();
         if (!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.channel.send("```diff\n- Vous n'avez pas la permissions de ban des membres de se discord\n```");
     
         if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) {
@@ -150,7 +146,6 @@ client.on('message', async message => {
     }
     
     if(message.content.startsWith(prefix + "mute")) {
-        message.channel.bulkDelete(1)
         if(!message.guild.member(message.author).hasPermission("MUTE_MEMBERS")) return message.channel.send("```diff\n- Vous n'avez pas la permission de mute un membre\n```");
 
         if(message.mentions.users.size === 0) {
