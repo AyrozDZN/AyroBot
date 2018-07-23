@@ -135,9 +135,9 @@ client.on('message', async message => {
         message.channel.bulkDelete(args[0]).then(() => {
             message.channel.send(`**__${args[0]} message on été supprimés !__**`);
         })
-        setTimeOut(Temps2, 5000);
-        function Temps2() {
-            message.delete();
+        setTimeOut(Temps, 5000);
+        function Temps() {
+            message.channel.delete()
         }
     }
     
