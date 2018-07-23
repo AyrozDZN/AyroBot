@@ -133,7 +133,8 @@ client.on('message', async message => {
 
         if (!args[0]) return message.channel.send("```diff\n- Tu dois préciser un nombre de message a supprimé\n```")
         message.channel.bulkDelete(args[0]).then(() => {
-        message.channel.send(`**__${args[0]} message on été supprimés !__**`);
+            message.channel.send(`**__${args[0]} message on été supprimés !__**`);
+        })
         setTimeOut(Temps2, 5000);
         function Temps2() {
             message.delete();
