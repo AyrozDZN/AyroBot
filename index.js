@@ -209,7 +209,7 @@ client.on('message', async message => {
 
             if (!args[1]) {
 
-            message.channel.sendMessage("Tu dois m’indiquer un lien YouTube"); 
+            message.channel.send("Tu dois m’indiquer un lien YouTube"); 
 
             return;
 
@@ -217,7 +217,7 @@ client.on('message', async message => {
 
             if(!message.member.voiceChannel) {
 
-            message.channel.sendMessage(":x: Tu dois être dans un salon vocal"); 
+            message.channel.send(":x: Tu dois être dans un salon vocal"); 
 
             return;
 
@@ -248,7 +248,7 @@ client.on('message', async message => {
 
             if(!message.member.voiceChannel) {
 
-            message.channel.sendMessage(":x: Tu dois être dans un salon vocal"); 
+            message.channel.send(":x: Tu dois être dans un salon vocal"); 
 
             return;
 
