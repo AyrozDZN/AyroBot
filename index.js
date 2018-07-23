@@ -57,7 +57,7 @@ client.on('message', async message => {
         .addField("!help", "Afficher les commandes")
         .addField("!stats", "Affiche t'est stats en message privé")
         .addField("!info", "Affiche les infos du serveur et du bot")
-        .addField("!avatar", "Affiche ton avatar"
+        .addField("!avatar", "Affiche ton avatar")
         .addField("!play <lien youtube>", "Lancer une musique youtube")
         .addField("!skip", "Passer à la musique suivante")
         .addField("!stop", "Stopper la musique")
