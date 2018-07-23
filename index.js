@@ -36,11 +36,11 @@ client.on('ready', () => {
 });
 
 client.on('guildMemberAdd', member => {
-    member.guild.channels.find("name", "accueil").send(`${member}, Bienvenue sur **AƳƦƠƵ**!`)
+    member.guild.channels.find("name", "📤📥accueil").send(`${member}, Bienvenue sur **AƳƦƠƵ**!`)
 })
 
 client.on('guildMemberRemove', member => {
-    member.guild.channels.find("name", "accueil").send(`**${member.user.username}** à quitté **AƳƦƠƵ**. Au revoir **${member.user.username}**...`)
+    member.guild.channels.find("name", "📤📥accueil").send(`**${member.user.username}** à quitté **AƳƦƠƵ**. Au revoir **${member.user.username}**...`)
 })
     
 client.on('message', async message => {
