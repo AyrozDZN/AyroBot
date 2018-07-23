@@ -16,22 +16,23 @@ client.login(process.env.BOT_TOKEN);
 function play(connection, message) {
   
     var server = servers[message.guild.id];
-
+  
     server.dispatcher = connection.playStream(ytdl(server.queue[0], {filter: "audioonly"}));
-
+  
     server.queue.shift();
-
+  
     server.dispatcher.on("end", function() { 
+    
         if (server.queue[0]) play(connection, message);
-
+  
         else connection.disconnect();
-
+  
     });
 }
 
 client.on('ready', () => {
     console.log("[AyrozDZN - BOT] Ready");
-    client.user.setActivity(`]|[AyroBot : !help]|[`);
+    client.user.setActivity(`En developpement`);
 });
 
 client.on('guildMemberAdd', member => {
@@ -207,7 +208,7 @@ client.on('message', async message => {
         
     case "play":
 
-        if (!args[1]) {
+    if (!args[1]) {
 
         message.channel.send("Tu dois m’indiquer un lien YouTube"); 
 
@@ -215,7 +216,7 @@ client.on('message', async message => {
 
     }
 
-        if(!message.member.voiceChannel) {
+    if(!message.member.voiceChannel) {
 
         message.channel.send(":x: Tu dois être dans un salon vocal"); 
 
@@ -224,7 +225,7 @@ client.on('message', async message => {
     }
 
 
-        if(!servers[message.guild.id]) servers[message.guild.id] = {
+    if(!servers[message.guild.id]) servers[message.guild.id] = {
 
         queue: []
 
@@ -238,7 +239,7 @@ client.on('message', async message => {
 
     if(!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
 
-    play(connection, message) 
+        play(connection, message) 
 
     });
 
@@ -246,7 +247,7 @@ client.on('message', async message => {
 
     case "skip":
 
-        if(!message.member.voiceChannel) {
+    if(!message.member.voiceChannel) {
 
         message.channel.send(":x: Tu dois être dans un salon vocal"); 
 
@@ -254,21 +255,21 @@ client.on('message', async message => {
 
     }   
 
-        var server = servers[message.guild.id];
+    var server = servers[message.guild.id];
 
-        if(server.dispatcher) server.dispatcher.end();
+    if(server.dispatcher) server.dispatcher.end();
 
-        break;
+    break;
 
     case "stop":
 
-        if(!message.member.voiceChannel) 
+    if(!message.member.voiceChannel) 
     
-        return message.channel.send(":x: Tu dois être dans un salon vocal");
+    return message.channel.send(":x: Tu dois être dans un salon vocal");
 
-        message.member.voiceChannel.leave();
+    message.member.voiceChannel.leave();
 
-        break;
+    break;
   
     }
 });
