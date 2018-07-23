@@ -46,7 +46,11 @@ client.on('guildMemberRemove', member => {
 client.on('message', async message => {
   
     if(message.content.startsWith(prefix + "avatar")) {
-        message.channel.send(message.author.displayAvatarURL)
+        var avatar_embed = new Discord.RichEmbed()
+        .setColor("#6699FF")
+        .setTitle(`Avatar de ${message.author.username}`)
+        .setImage(message.author.avatarURL)
+        message.channel.send(avatar_embed);
     }
     
     if (message.content === prefix + "help") {
