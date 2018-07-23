@@ -11,7 +11,7 @@ const queue = new Map();
 var servers = {};
 
 
-client.login("NDcwOTYzMDI1Njc2MDc1MDA5.Djd6KQ.tdYySBA5BSUjLClGSSc0nYohBcM");
+client.login(process.env.BOT_TOKEN);
 
 function play(connection, message) {
   
