@@ -11,7 +11,7 @@ const queue = new Map();
 var servers = {};
 
 
-client.login("NDYxMDUxOTcyMTMzMzIyNzUy.DjdArQ.DVYR3SBpIRcY5FnlyUtmegejQko");
+client.login();
 
 function play(connection, message) {
   
